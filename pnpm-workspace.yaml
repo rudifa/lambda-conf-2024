@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@scarf/scarf'
+  - better-sqlite3
+  - esbuild
+  - protobufjs
+  - unrs-resolver
