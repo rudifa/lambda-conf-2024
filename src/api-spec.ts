@@ -10,7 +10,8 @@ export class Content extends S.Class<Content>("Content")({
 }) {}
 
 export class Note extends Content.extend<Note>("Note")({
-  id: S.Int
+  id: S.Int,
+  createdAt: S.Date
 }) {
   static Array = S.Array(this)
 }

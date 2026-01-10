@@ -23,10 +23,13 @@ const appError = (message: string) =>
 const makeRepository = Effect.gen(function*() {
   const sql = yield* sqlite.client.SqliteClient
   return {
-    createNoteTable: () => sql`CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY, content TEXT UNIQUE)`,
+    createNoteTable: () => Effect.gen(function*() {
+      yield* sql`DROP TABLE IF EXISTS notes`
+      yield* sql`CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY, content TEXT, createdAt TEXT, UNIQUE(content, createdAt))`
+    }),
     createNote: sqlite.schema.void({
       Request: Content,
-      execute: (body) => sql`INSERT INTO notes ${sql.insert(body)}`
+      execute: (body) => sql`INSERT INTO notes ${sql.insert({ ...body, createdAt: new Date().toISOString() })}`
     }),
     getAllNotes: sqlite.schema.findAll({
       Request: S.Void,
