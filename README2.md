@@ -47,9 +47,16 @@ The `ClientError` is intended, to demonstrate error reporting.
 
 This error occurs because the demo app's database accepts only unique message items.
 
+## Features added
+
+- a timestamp for the message (note)
+
 ## Possible improvements
 
+- add tests
 - a more user friendly error log
-- add a timestamp to the message (note)
-- add console argument for a new note
-- permanent storage of the database
+- client: add console input for adding a note
+- server: add permanent storage of the database
+- get data from the web instead of hardcoded data (e.g. from github)
+- create an astro app
+- deploy to the cloud (e.g. vercel, netlify, aws lambda)
